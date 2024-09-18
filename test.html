@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <section>
+        <h1>My Website</h1>
+        <button onclick="document.body.style.backgroundColor = 'yellow'">Make Yellow</button>
+        <button onclick="makeRed()">Make Red</button>
+        <button id="make-green">Make Green</button>
+        <button id="make-blue">Make Blue</button>
+        <button id="make-black">Make Black</button>
+        <button id="make-purple">Make Purple</button>
+        <button id="make-pink">Make Pink</button>
+        <button id="make-orange">Make Orange</button>
+
+        <br>
+        <p id="info">Info</p>
+       <input id="info-input" placeholder="please type delete" type="text">
+       <br>
+       <button disabled id="btn-delete">Delete</button>
+
+       <h1>Comment</h1>
+       <div id="comment-container">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae libero provident eos praesentium expedita fugiat mollitia voluptatibus, tenetur earum aspernatur.</p>
+        <p>A adipisci, error delectus sequi amet odit aliquid illo! Modi itaque deserunt distinctio, velit cumque tempore atque expedita aut molestias.</p>
+        <p>Non adipisci culpa commodi reprehenderit at hic obcaecati totam ab maiores amet fugit minus neque iste ratione omnis, asperiores alias.</p>
+       </div>
+       <div></div>
+           <textarea name="" id="new-comment" cols="60" rows="5"></textarea>
+           <br>
+           <button id="btn-post">Post</button>
+       </div>
+    </section>
+    <script>
+        function makeRed() {
+            document.body.style.backgroundColor = 'red';
+        }
+        document.getElementById('make-green').addEventListener('click', function(){
+            document.body.style.backgroundColor = 'green';
+        });
+        const makeBlueButton = document.getElementById('make-blue');
+        makeBlueButton.onclick = makeBlue;
+        function makeBlue() {
+            document.body.style.backgroundColor = 'blue';
+        };
+        const makeBlackButton = document.getElementById('make-black');
+        makeBlackButton.onclick = function(){
+            document.body.style.backgroundColor = 'black';
+        };
+        const makePurpleButton = document.getElementById('make-purple');
+        makePurpleButton.addEventListener('click', makePurple);
+        function makePurple() {
+            document.body.style.backgroundColor = 'purple';
+        };
+        const makePinkButton = document.getElementById('make-pink').addEventListener('click', function makePink() {
+            document.body.style.backgroundColor = 'pink';
+        });
+        document.getElementById('make-orange').addEventListener('click', function(){
+            document.body.style.backgroundColor = 'orange';
+        });
+
+
+        document.getElementById('info-input').addEventListener('keyup', function(event){
+            const infoValue = event.target.value;
+            const deleteButton = document.getElementById('btn-delete');
+            if(infoValue === 'delete'){
+                deleteButton.removeAttribute('disabled');
+            }
+            else{
+                deleteButton.setAttribute('disabled', true)
+            }
+        });
+
+        document.getElementById('btn-delete').addEventListener('click', function(){
+            const info = document.getElementById('info');
+            info.style.display = 'none'
+        });
+
+
+        document.getElementById('btn-post').addEventListener('click', function(){
+            const commentBox = document.getElementById('new-comment');
+            const newComment = commentBox.value;
+
+            const container = document.getElementById('comment-container');
+            const p = document.createElement('p');
+            p.innerText = newComment;
+
+            container.appendChild(p);
+
+            commentBox.value = '';
+        });
+
+    </script>
+</body>
+</html>
